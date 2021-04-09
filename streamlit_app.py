@@ -59,7 +59,7 @@ st.write("""
 
 st.subheader('It\'s also good to explore some of the relationships between the features (TV, radio, \
               newspaper) and target (sales)')
-
+st.write("")
 
 # Interesting but a bit too complicated
 
@@ -94,6 +94,9 @@ plot_scatter('newspaper', 'sales')
 
 st.subheader('Through visual inspection, it looks like TV and radio show a stronger relationship with sales than \
               newspapers do but we can explore this with machine learning.')
+
+st.write('')
+st.write('')
 
 st.subheader('So let\'s create a model!')
 
@@ -147,7 +150,7 @@ st.altair_chart(scatter_chart + scatter_chart.transform_regression('Predictions'
 mse = metrics.mean_squared_error(evaluation['Actuals'], evaluation['Predictions'])
 rmse = round(mse**0.5, 2)
 
-st.write(f'Square Root of the Mean Squared Error (RMSE): {rmse}.  \n \
+st.write(f'Square Root of the Mean Squared Error (RMSE): {rmse}  \n \
           This can be interpreted that in general the sales prediction will \
           be out by {int(rmse*1000)} units.')
 
@@ -173,4 +176,5 @@ if st.button('How many things am I going to sell?'):
 
     st.write('Feel free to play with the inputs and see if you can find an optimal budget - making \
               the most sales for the least cost!')
+    st.write('')
     st.subheader('Feel free to reach out to me at ryan@fromlawtodata.com if you have any questions.')
