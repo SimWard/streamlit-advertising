@@ -33,9 +33,9 @@ url = "https://www.statlearning.com/s/Advertising.csv"
 
 @st.cache
 def load_data(url):
-    data = pd.read_csv(url, index_col=0)
-    data.columns = ['TV', 'Radio', 'Newspaper', 'Sales']
-    return data
+  data = pd.read_csv(url, index_col=0)
+  data.columns = ['TV', 'Radio', 'Newspaper', 'Sales']
+  return data
 
 
 data = load_data(url)
@@ -44,8 +44,8 @@ data = load_data(url)
 # data_load_state.text('Advertising data imported!')
 
 if st.checkbox('Show raw data'):
-    st.write('### Raw data')
-    st.write(data)
+  st.write('### Raw data')
+  st.write(data)
 
 st.write('### Summary statistics')
 st.dataframe(data.describe())
@@ -65,14 +65,14 @@ st.write("")
 
 
 def plot_scatter(x, y):
-    st.altair_chart(alt.Chart(data)
-                    .mark_circle(size=60)
-                    .encode(
-                        x=x,
-                        y=y,
-                        tooltip=['TV', 'Radio', 'Newspaper', 'Sales'])
-                    .properties(title=f'{x} budget vs {y}')
-                    )
+  st.altair_chart(alt.Chart(data)
+                  .mark_circle(size=60)
+                  .encode(
+                      x=x,
+                      y=y,
+                      tooltip=['TV', 'Radio', 'Newspaper', 'Sales'])
+                  .properties(title=f'{x} budget vs {y}')
+                  )
 
 
 plot_scatter('TV', 'Sales')
@@ -143,6 +143,7 @@ mse = metrics.mean_squared_error(evaluation['Actuals'], evaluation['Predictions'
 rmse = round(mse**0.5, 2)
 
 st.write('### How do we know if our model performed well?')
+st.write('')
 st.write(f'The Square Root of the Mean Squared Error (rmse) is one metric we can use. \
            Here, the rmse was {rmse}.  \n \
            This can be interpreted that in general the sales prediction will be out \
@@ -162,18 +163,18 @@ radio_value = st.slider('Radio budget (in $\'000)', min_value=0, max_value=500, 
 newspaper_value = st.slider('Newspaper budget (in $\'000)', min_value=0, max_value=500, value=0)
 
 if st.button('How many things am I going to sell?'):
-    # st.progress(progress_variable_1_to_100)
-    st.spinner()
-    with st.spinner(text='Thinking really hard...'):
-        sleep(2)
-        st.success('Prediction complete')
-    single_prediction = reg.predict([[TV_value, radio_value, newspaper_value]])
-    st.write(f'The model predicts you\'ll sell {int(single_prediction[0])}k units from a  \
+  # st.progress(progress_variable_1_to_100)
+  st.spinner()
+  with st.spinner(text='Thinking really hard...'):
+    sleep(2)
+    st.success('Prediction complete')
+  single_prediction = reg.predict([[TV_value, radio_value, newspaper_value]])
+  st.write(f'The model predicts you\'ll sell {int(single_prediction[0])}k units from a  \
                combined advertising budget of TV: ${TV_value}k, Radio: ${radio_value}k and \
                Newspaper: ${newspaper_value}k.')
 
-    st.write('Tinker with the inputs and see if you can find an optimal budget - making \
+  st.write('Tinker with the inputs and see if you can find an optimal budget - making \
               the most sales for the least cost!')
-    st.write('')
-    st.write('#### Feel free to reach out to me at ryan@fromlawtodata.com if you have \
+  st.write('')
+  st.write('#### Feel free to reach out to me at ryan@fromlawtodata.com if you have \
                    any questions.')
